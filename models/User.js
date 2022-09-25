@@ -29,7 +29,7 @@ thoughts:[
 friends:[{
     type: mongoose.Schema.Types.ObjectId,
     //?????
-    ref:this}]
+    ref:"User"}]
 
 })
 
