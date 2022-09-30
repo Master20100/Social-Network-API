@@ -1,5 +1,19 @@
 const mongoose = require('mongoose');
+const { ReactionSchema } = require('.');
 
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
 const thoughtsSchema = new mongoose.Schema(
     {
     thoughtText:{
@@ -12,10 +26,7 @@ maxLength:280
 createdAt:{
 type:Date,
 default:Date.now,
-// Use a getter method to format the timestamp on query
-get time(){
-    return this.createdAt;
-}
+get: (date)=>formatDate(date)
 },
 username:{
     type:String,
@@ -24,9 +35,9 @@ username:{
 
 // reactions (These are like replies)
 // Array of nested documents created with the reactionSchema
-reactions:[{
-    
-}]
+reactions:[
+    ReactionSchema
+]
 
 
 })
@@ -35,6 +46,6 @@ thoughtsSchema.virtual('reactionCount').get(function(){
     return this.reactions.length;
 })
 
-const Thought = mongoose.model('thought', thoughtsSchema);
+const Thought = mongoose.model('Thought', thoughtsSchema);
 
 module.exports = Thought;

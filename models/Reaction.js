@@ -1,11 +1,24 @@
 const mongoose = require('mongoose');
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
-const reactionSchema = new mongoose.Schema(
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+const ReactionSchema = new mongoose.Schema(
     {
-        //Use Mongoose's ObjectId data type
-// Default value is set to a new ObjectId
+        
         reactionId:{
 type: mongoose.Schema.Types.ObjectId,
+default:()=>new mongoose.Types.ObjectId()
 },
 reactionBody:{
 type: String,
@@ -17,14 +30,12 @@ username:{
     required:true,
 },
 
-// Set default value to the current timestamp
-// Use a getter method to format the timestamp on query
-// createdAt:{
-//     type: Date.now(),
-//     default:get(function(){return doc.createdAt })
-// }
+createdAt:{
+  type:Date,
+  default:Date.now,
+  get: (date)=>formatDate(date)
+
+}
     })
 
-    const Reaction = mongoose.model('reaction', reactionSchema);
-
-    module.exports = Reaction;
+    module.exports = ReactionSchema;

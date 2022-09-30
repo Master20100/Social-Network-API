@@ -26,11 +26,11 @@ thoughts:[
         ref: 'Thought'
     }],
 
-friends:[{
+friends:[
+    {
     type: mongoose.Schema.Types.ObjectId,
-    //?????
-    ref:"User"}]
-
+    ref:"User"
+}]
 })
 
 
@@ -39,7 +39,7 @@ userSchema.virtual('friendCount').get(function(){
 })
 
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
 
