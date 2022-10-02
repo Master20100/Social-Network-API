@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('./config/connection');
-const {Reaction,Thought,User} = require('./models');
+const { Reaction, Thought, User } = require('./models');
 const routes = require('./routes');
 
 
@@ -22,14 +22,13 @@ app.use(routes);
 //     const allusers = await User.find();
 //     console.log(allusers);
 //     res.send(allusers);
-    
+
 
 // });
 
 
 db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-    });
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
   });
-  
+});
