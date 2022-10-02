@@ -42,6 +42,7 @@ router
          const friendId = req.params.friendId;
          const user = await User.findOne({ _id: userId });
          user.updateOne(
+            { _id: userId},
             { $addToSet: { friends: friendId } }
 
 
