@@ -13,11 +13,9 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
-const ReactionSchema = new mongoose.Schema(
-    {
-        
+const ReactionSchema = new mongoose.Schema({
         reactionId:{
-type: mongoose.Schema.Types.ObjectId,
+          type: mongoose.Schema.Types.ObjectId,
 default:()=>new mongoose.Types.ObjectId()
 },
 reactionBody:{

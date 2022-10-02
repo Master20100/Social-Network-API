@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { ReactionSchema } = require('.');
+const { ReactionSchema } = require('./Reaction');
 
 function formatDate(date) {
     var d = new Date(date),
@@ -35,10 +35,8 @@ username:{
 
 // reactions (These are like replies)
 // Array of nested documents created with the reactionSchema
-reactions:[
-    ReactionSchema
-]
 
+reactions: [ReactionSchema]
 
 })
 
@@ -49,3 +47,4 @@ thoughtsSchema.virtual('reactionCount').get(function(){
 const Thought = mongoose.model('Thought', thoughtsSchema);
 
 module.exports = Thought;
+
