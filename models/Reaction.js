@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { ReactionSchema } = require('.');
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -13,10 +14,9 @@ function formatDate(date) {
     return [year, month, day].join('-');
 }
 
-const ReactionSchema = new mongoose.Schema({
+const reactionsSchema = new mongoose.Schema({
     reactionId: {
         type: mongoose.Schema.Types.ObjectId,
-        default: () => new mongoose.Types.ObjectId()
     },
     reactionBody: {
         type: String,
@@ -31,9 +31,13 @@ const ReactionSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        get: (date) => formatDate(date)
 
     }
 })
 
-module.exports = ReactionSchema;
+// const Reaction = mongoose.model('Reaction', reactionsSchema);
+
+
+module.exports = reactionsSchema;
+
+

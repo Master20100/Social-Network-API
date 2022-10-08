@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const ReactionSchema = require('./Reaction');
+const ReactionsSchema = require('./Reaction');
 
 function formatDate(date) {
     var d = new Date(date),
@@ -28,6 +28,7 @@ const thoughtsSchema = new mongoose.Schema(
             default: Date.now,
             get: (date) => formatDate(date)
         },
+        
         username: {
             type: String,
             required: true
@@ -35,8 +36,11 @@ const thoughtsSchema = new mongoose.Schema(
 
         // reactions (These are like replies)
         // Array of nested documents created with the reactionSchema
+       //reactions of type reaction schema and each element of the array should follow a reactionschema type, which means 
+       //it should be having a reactionBody of type string, username of type string
 
-        reactions: [ReactionSchema]
+       //reaction routes not required
+        reactions: [ReactionsSchema]
 
     })
 
